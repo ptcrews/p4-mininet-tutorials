@@ -59,6 +59,16 @@ def writeTunnelRules(p4info_helper, ingress_sw, egress_sw, tunnel_id,
 
     # TODO build the transit rule
     # TODO install the transit rule on the ingress switch
+    table_entry = p4info_helper.buildTableEntry(
+            table_name="myIngress.myTunnel_exact",
+            match_fields={
+                "hdr.myTunnel.dst_id": (tunnel_id, 32)
+            },
+            action_name="myIngress.myTunnel_forward",
+            action_params={
+                "port": SWITCH_TO_SWITCH_PORT
+            },
+    ingress_sw.WriteTableEntry(table_entry)
     print "TODO Install transit tunnel rule"
 
     # 3) Tunnel Egress Rule

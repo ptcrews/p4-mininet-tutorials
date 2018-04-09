@@ -72,7 +72,7 @@ header p4calc_t {
  * fill p4calc_t header with P, four, ver, op, operand_a, operand_b, and res
    entries based on above protocol header definition.
  */
- bit<8> P;
+ bit<8> p;
  bit<8> four;
  bit<8> ver;
  bit<8> op;

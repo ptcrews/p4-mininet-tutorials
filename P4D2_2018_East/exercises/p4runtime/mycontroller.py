@@ -62,14 +62,14 @@ def writeTunnelRules(p4info_helper, ingress_sw, egress_sw, tunnel_id,
     table_entry = p4info_helper.buildTableEntry(
             table_name="myIngress.myTunnel_exact",
             match_fields={
-                "hdr.myTunnel.dst_id": (tunnel_id, 32)
+                "hdr.myTunnel.dst_id": tunnel_id
             },
             action_name="myIngress.myTunnel_forward",
             action_params={
                 "port": SWITCH_TO_SWITCH_PORT
             },
     ingress_sw.WriteTableEntry(table_entry)
-    print "TODO Install transit tunnel rule"
+    print "Install transit tunnel rule"
 
     # 3) Tunnel Egress Rule
     # For our simple topology, the host will always be located on the
@@ -155,8 +155,8 @@ def main(p4info_file_path, bmv2_file_path):
                      dst_eth_addr="00:00:00:00:01:01", dst_ip_addr="10.0.1.1")
 
     # TODO Uncomment the following two lines to read table entries from s1 and s2
-    #readTableRules(p4info_helper, s1)
-    #readTableRules(p4info_helper, s2)
+    readTableRules(p4info_helper, s1)
+    readTableRules(p4info_helper, s2)
 
     # Print the tunnel counters every 2 seconds
     try:

@@ -117,7 +117,7 @@ parser MyParser(packet_in packet,
         */
         packet.extract(hdr.ipv4_option);
         transition select(hdr.ipv4_option.option) {
-            IPv4_OPTION_MRI   : parse_mri;
+            IPV4_OPTION_MRI   : parse_mri;
             default           : accept;
         }
     }
